@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Support - Common Run</title>
+    <link rel="stylesheet" href="styles.css">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Support</h1>
+            <p class="subtitle">Having issues with Common Run? Use this form to describe your issue and we'll do our best to resolve it or get back in touch with you.</p>
+        </header>
+        
+        <main>
+            <form id="support-form" action="#" method="post">
+                <div class="form-group">
+                    <label for="title">Title <span class="required">(Required)</span></label>
+                    <input type="text" id="title" name="title" required placeholder="Please give your issue a descriptive title/short summary">
+                </div>
+
+                <div class="form-group">
+                    <label for="description">Description</label>
+                    <textarea id="description" name="description" rows="8" placeholder="Describe your issue in detail. Feel free to use Markdown formatting."></textarea>
+                    <small class="form-hint">Markdown formatting is supported</small>
+                </div>
+
+                <div class="form-group">
+                    <label for="name">Your Name <span class="optional">(Optional)</span></label>
+                    <input type="text" id="name" name="name" placeholder="Your name">
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Your Email Address <span class="optional">(Optional)</span></label>
+                    <input type="email" id="email" name="email" placeholder="your.email@example.com">
+                    <small class="form-hint">Your contact details will be useful if we need to get additional information about this issue or follow up once it is resolved.</small>
+                </div>
+
+                <button type="submit" class="submit-btn" id="submit-btn">
+                    <span id="submit-text">Submit issue</span>
+                    <span id="submit-loading" style="display: none;">Sending...</span>
+                </button>
+                <div id="form-message" class="form-message" style="display: none;"></div>
+            </form>
+        </main>
+        
+        <footer>
+            <nav class="footer-nav">
+                <a href="index.html">Privacy</a>
+                <a href="support.html">Support</a>
+            </nav>
+            <p>&copy; <span id="year"></span> All rights reserved.</p>
+        </footer>
+    </div>
+    
+    <script>
+        // Set current year
+        document.getElementById('year').textContent = new Date().getFullYear();
+        
+        // Initialize EmailJS with your Public Key
+        // Replace 'YOUR_PUBLIC_KEY' with your EmailJS Public Key
+        (function() {
+            emailjs.init('GTqxTN3aCr3vhrnIP');
+        })();
+        
+        // Handle form submission
+        document.getElementById('support-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const title = document.getElementById('title').value;
+            const description = document.getElementById('description').value;
+            const name = document.getElementById('name').value || 'Not provided';
+            const email = document.getElementById('email').value || 'Not provided';
+            
+            // Validate required fields
+            if (!title || !description) {
+                showMessage('Please fill in the required fields (Title and Description).', 'error');
+                return;
+            }
+            
+            // Show loading state
+            const submitBtn = document.getElementById('submit-btn');
+            const submitText = document.getElementById('submit-text');
+            const submitLoading = document.getElementById('submit-loading');
+            
+            submitBtn.disabled = true;
+            submitText.style.display = 'none';
+            submitLoading.style.display = 'inline';
+            hideMessage();
+            
+            // Prepare email template parameters
+            const templateParams = {
+                title: title,
+                description: description,
+                name: name,
+                email: email,
+                date: new Date().toLocaleString()
+            };
+            
+            // Send email using EmailJS
+            // Replace 'YOUR_SERVICE_ID' and 'YOUR_TEMPLATE_ID' with your EmailJS credentials
+            emailjs.send('service_iv2qxym', 'template_vur6a7i', templateParams)
+                .then(function(response) {
+                    // Success
+                    showMessage('Thank you for your submission! We\'ll get back to you as soon as possible.', 'success');
+                    document.getElementById('support-form').reset();
+                    submitBtn.disabled = false;
+                    submitText.style.display = 'inline';
+                    submitLoading.style.display = 'none';
+                }, function(error) {
+                    // Error
+                    showMessage('Sorry, there was an error sending your message. Please try again or contact us directly at commonrunapp@gmail.com', 'error');
+                    submitBtn.disabled = false;
+                    submitText.style.display = 'inline';
+                    submitLoading.style.display = 'none';
+                    console.error('EmailJS error:', error);
+                });
+        });
+        
+        function showMessage(text, type) {
+            const messageDiv = document.getElementById('form-message');
+            messageDiv.textContent = text;
+            messageDiv.className = 'form-message ' + type;
+            messageDiv.style.display = 'block';
+            
+            // Scroll to message
+            messageDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+        
+        function hideMessage() {
+            document.getElementById('form-message').style.display = 'none';
+        }
+    </script>
+</body>
+</html>
