@@ -10,13 +10,59 @@
     <div class="container">
         <header>
             <h1>Privacy Policy</h1>
-            <p class="last-updated">Last updated: <span id="date"></span></p>
+            <p class="last-updated">Last updated: 13 January 2026</p>
         </header>
         
         <main>
-            <!-- Your privacy policy content will go here -->
             <section>
-                <p>Privacy policy content will be added here.</p>
+                <p>Common Run is designed to only store your data on your device, and only to provide the app's core features.</p>
+            </section>
+
+            <section>
+                <h2>Data the app uses</h2>
+                
+                <h3>Workout routes</h3>
+                <p>If you add a route by importing a file or sharing a workout, the route data is stored locally on your device. Routes are not stored anywhere else.</p>
+                
+                <h3>Location data</h3>
+                <p>If you allow the app access to your live location, the app uses your live location to show your position on the map.</p>
+                <p>Workout routes you share may include precise location coordinates. These coordinates are used only to:</p>
+                <ul>
+                    <li>Display your route</li>
+                    <li>Calculate and show elevation data</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Elevation calculation</h2>
+                <p>To calculate elevation for a route, the route's coordinates are securely sent to a third-party elevation service (Open-Elevation) <strong>only</strong> to calculate elevation values.</p>
+                <ul>
+                    <li>Coordinates are sent only once when the route is saved.</li>
+                    <li>They are not used for advertising or tracking.</li>
+                    <li>They are not intentionally retained beyond processing.</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>We do not sell, or use your data for anything else</h2>
+                <ul>
+                    <li>We do not sell your data</li>
+                    <li>We do not use analytics or advertising SDKs</li>
+                    <li>We do not track you across apps or websites</li>
+                    <li>We do not collect background location data</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Removing your data</h2>
+                <p>To remove your data, you can delete routes or the app at any time.</p>
+                <p>The app is not intended for children under 13, and we do not knowingly collect personal information from children.</p>
+                <p>You can see when this policy was last updated at the top - "Last updated" date.</p>
+            </section>
+
+            <section>
+                <h2>Contact</h2>
+                <p>If you have questions about this policy, contact: <a href="mailto:wtrickey@gmail.com">wtrickey@gmail.com</a></p>
             </section>
         </main>
         
@@ -26,12 +72,7 @@
     </div>
     
     <script>
-        // Set current date and year
-        document.getElementById('date').textContent = new Date().toLocaleDateString('en-US', { 
-            year: 'numeric', 
-            month: 'long', 
-            day: 'numeric' 
-        });
+        // Set current year
         document.getElementById('year').textContent = new Date().getFullYear();
     </script>
 </body>
