@@ -16,6 +16,49 @@ This repository hosts the privacy policy and support pages for Common Run, deplo
    - `https://[your-username].github.io/Common-Run/`
    - Or if you have a custom domain, configure it in the Pages settings
 
+3. **Important:** Make sure all files are committed and pushed to GitHub:
+   ```bash
+   git add .
+   git commit -m "Add website files"
+   git push
+   ```
+
+## Troubleshooting GitHub Pages
+
+If your site isn't visible, check these common issues:
+
+1. **Files not pushed to GitHub:**
+   - Make sure you've committed and pushed all files (index.html, support.html, styles.css, .nojekyll)
+   - Check your repository on GitHub to confirm the files are there
+
+2. **GitHub Pages not enabled:**
+   - Go to Settings → Pages
+   - Verify "Source" is set to a branch (usually `main` or `master`)
+   - Verify the folder is set to `/ (root)`
+   - Click "Save" if you made changes
+
+3. **Wrong branch selected:**
+   - Make sure you selected the branch where your files are (usually `main` or `master`)
+   - Check which branch is your default branch in Settings → Branches
+
+4. **Deployment delay:**
+   - After enabling Pages, it can take 1-5 minutes for the site to be available
+   - Check the "Pages" section in Settings for deployment status
+   - Look for a green checkmark indicating successful deployment
+
+5. **Repository visibility:**
+   - Public repositories: Pages work immediately
+   - Private repositories: Pages also work, but check if there are any restrictions
+
+6. **Clear browser cache:**
+   - Try a hard refresh: `Cmd+Shift+R` (Mac) or `Ctrl+Shift+R` (Windows/Linux)
+   - Or try an incognito/private window
+
+7. **Check the URL:**
+   - Make sure you're using the correct repository name in the URL
+   - Format: `https://[username].github.io/[repository-name]/`
+   - Note: Repository name is case-sensitive
+
 ## Pages
 
 - **Privacy Policy:** `index.html` - The app's privacy policy
